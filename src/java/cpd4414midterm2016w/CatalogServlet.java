@@ -30,6 +30,11 @@ public class CatalogServlet extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        // These three lines invalidate the cache, and are required for IE
+        response.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+
         // TODO: Determine if there was an "id" Parameter on the Request
 
         // TODO: If there was an "id" parameter, convert it to an Integer and
