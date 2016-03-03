@@ -16,11 +16,52 @@ limitations under the License.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>CPD4414-Midterm-2016W</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                getAll();
+            });
+
+            function getAll() {
+                $.ajax({
+                    url: "catalog",
+                    method: "GET",
+                    success: function (data) {
+                        var html = '<tr><th>ID</th><th>Name</th><th>Description</th><th>Quantity</th></tr>';
+                        for (var i = 0; i < data.length; i++) {
+                            html += '<tr><td>' + data[i].id + '</td>';
+                            html += '<td>' + data[i].name + '</td>';
+                            html += '<td>' + data[i].description + '</td>';
+                            html += '<td>' + data[i].quantity + '</td></tr>';
+                        }
+                        $('#output').html(html);
+                    }
+                })
+            }
+
+            function getOne() {
+                $.ajax({
+                    url: "catalog",
+                    method: "GET",
+                    data: {"id": $('#catalogId').val()},
+                    success: function (data) {
+                        var html = '<tr><th>ID</th><th>Name</th><th>Description</th><th>Quantity</th></tr>';
+                        html += '<tr><td>' + data.id + '</td>';
+                        html += '<td>' + data.name + '</td>';
+                        html += '<td>' + data.description + '</td>';
+                        html += '<td>' + data.quantity + '</td></tr>';
+                        $('#output').html(html);
+                    }
+                })
+            }
+        </script>
     </head>
     <body>
-        <div>TODO write content</div>
+        <table id="output"></table>
+        <p><button onclick="getAll()">Refresh</button></p>
+        <p><input id="catalogId" /><button onclick="getOne()">Search by ID</button></p>
     </body>
 </html>
