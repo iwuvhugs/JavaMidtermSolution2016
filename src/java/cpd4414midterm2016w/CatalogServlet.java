@@ -28,6 +28,11 @@ import javax.servlet.http.HttpServletResponse;
 public class CatalogServlet extends HttpServlet {
     // TODO: Create an instance of the CatalogController class to use in doGet
     
+    /**
+     * The standard Servlet doGet method which runs when a GET request is received
+     * @param request the request object for incoming requests
+     * @param response the response object for outgoing responses
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         // These three lines invalidate the cache, and are required for IE
