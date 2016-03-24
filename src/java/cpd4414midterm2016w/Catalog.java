@@ -15,9 +15,11 @@
  */
 package cpd4414midterm2016w;
 
+import org.json.simple.JSONObject;
+
 /**
  *
- * @author <ENTER YOUR NAME HERE>
+ * @author <Kirill Suslov>
  */
 public class Catalog {
 
@@ -27,7 +29,103 @@ public class Catalog {
     private int quantity;
 
     // TODO: Build the Getters and Setters for this Model Class
-    
     // TODO: Build a toString method that returns a JSON String of the form:
     //   { "id" : XXX, "name" : "XXX", "description" : "XXX", "quantity" : XXX }
+    /**
+     * Method returns catalog id
+     *
+     * @return id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Method sets catalog id
+     *
+     * @param id
+     */
+    public void setId(int id) {
+        if (id < 0) {
+            this.id = 0;
+        } else {
+            this.id = id;
+        }
+    }
+
+    /**
+     * Method returns catalog name
+     *
+     * @return name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Method sets catalog name
+     *
+     * @param name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Method returns catalog description
+     *
+     * @return description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Method sets catalog description
+     *
+     * @param description
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * Method returns catalog quantity
+     *
+     * @return quantity
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * Method sets catalog quantity
+     *
+     * @param quantity
+     */
+    public void setQuantity(int quantity) {
+        if (quantity < 0) {
+            this.quantity = 0;
+        } else {
+            this.quantity = quantity;
+        }
+    }
+
+    /**
+     * Method returns catalog as Json string
+     *
+     * @return json
+     */
+    @Override
+    public String toString() {
+
+        JSONObject jsonCatalog = new JSONObject();
+        jsonCatalog.put("id", id);
+        jsonCatalog.put("name", name);
+        jsonCatalog.put("description", description);
+        jsonCatalog.put("quantity", quantity);
+
+        return jsonCatalog.toJSONString(); 
+    }
+
 }

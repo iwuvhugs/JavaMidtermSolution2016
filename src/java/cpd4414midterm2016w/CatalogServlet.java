@@ -15,6 +15,10 @@
  */
 package cpd4414midterm2016w;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,14 +26,17 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author <ENTER YOUR NAME HERE>
+ * @author <Kirill Suslov>
  */
 @WebServlet("/catalog")
 public class CatalogServlet extends HttpServlet {
-    // TODO: Create an instance of the CatalogController class to use in doGet
-    
+
+    private CatalogController catalogController = new CatalogController();
+
     /**
-     * The standard Servlet doGet method which runs when a GET request is received
+     * The standard Servlet doGet method which runs when a GET request is
+     * received
+     *
      * @param request the request object for incoming requests
      * @param response the response object for outgoing responses
      */
@@ -41,14 +48,36 @@ public class CatalogServlet extends HttpServlet {
         response.setDateHeader("Expires", 0);
 
         // TODO: Determine if there was an "id" Parameter on the Request
+        if (request.getParameterMap().containsKey("id")) {
+            // TODO: If there was an "id" parameter, convert it to an Integer and
+            //       use the id to call the Controller's getCatalogById method, then
+            //       output the Catalog item's JSON to the response object
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                response.getWriter().println(catalogController.getCatalogById(id).toString());
+            } catch (NumberFormatException | NullPointerException | IOException e) {
+                Logger.getLogger(CatalogServlet.class.getName()).log(Level.SEVERE, null, e);
+            }
+        } else {
+            // TODO: If there was NOT an "id", then call the Controller's getAll
+            //       method to retrieve the list. Iterate through the list to output
+            //       a valid JSON array to the response object like:
+            //       [{...}, {...}, {...}]
+            try {
+                PrintWriter output = response.getWriter();
+                StringBuilder builder = new StringBuilder();
+                builder.append("[");
+                for (Catalog c : catalogController.getAll()) {
+                    builder.append(c.toString());
+                    builder.append(", ");
+                }
+                builder.delete(builder.length() - 2, builder.length() - 1);
+                builder.append("]");
+                output.print(builder.toString());
+            } catch (IOException ex) {
+                Logger.getLogger(CatalogServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
-        // TODO: If there was an "id" parameter, convert it to an Integer and
-        //       use the id to call the Controller's getCatalogById method, then
-        //       output the Catalog item's JSON to the response object
-        
-        // TODO: If there was NOT an "id", then call the Controller's getAll
-        //       method to retrieve the list. Iterate through the list to output
-        //       a valid JSON array to the response object like:
-        //       [{...}, {...}, {...}]
     }
 }

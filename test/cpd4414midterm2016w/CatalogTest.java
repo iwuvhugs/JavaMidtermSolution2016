@@ -61,29 +61,49 @@ public class CatalogTest {
 
     @Test
     public void testSetQuantity4ThenGetQuantityReturns4() {
-        // TODO: Complete the test according to the test name
+        Catalog instance = new Catalog();
+        instance.setQuantity(4);
+        int expResult = 4;
+        int result = instance.getQuantity();
+        assertEquals(expResult, result);
     }
 
     @Test
     public void testSetIdZeroThenGetIdReturnsZero() {
-        // TODO: Complete the test according to the test name
+        Catalog instance = new Catalog();
+        instance.setId(0);
+        int expResult = 0;
+        int result = instance.getId();
+        assertEquals(expResult, result);
     }
 
     @Test
     public void testSetNameEmptyThenGetNameReturnsEmpty() {
-        // TODO: Complete the test according to the test name
+        Catalog instance = new Catalog();
+        instance.setName("");
+        String expResult = "";
+        String result = instance.getName();
+        assertEquals(expResult, result);
     }
 
     @Test
     public void testSetDescEmptyThenGetDescReturnsEmpty() {
-        // TODO: Complete the test according to the test name
+        Catalog instance = new Catalog();
+        instance.setDescription("");
+        String expResult = "";
+        String result = instance.getDescription();
+        assertEquals(expResult, result);
     }
 
     @Test
     public void testSetQuantityZeroThenGetQuantityReturnsZero() {
-        // TODO: Complete the test according to the test name
+        Catalog instance = new Catalog();
+        instance.setQuantity(0);
+        int expResult = 0;
+        int result = instance.getQuantity();
+        assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testSetIdNegative4ThenGetIdReturnsZero() {
         Catalog instance = new Catalog();
@@ -92,10 +112,14 @@ public class CatalogTest {
         int result = instance.getId();
         assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testSetQuantityNegative4ThenGetQuantityReturnsZero() {
-        // TODO: Complete the test according to the test name
+        Catalog instance = new Catalog();
+        instance.setQuantity(-4);
+        int expResult = 0;
+        int result = instance.getQuantity();
+        assertEquals(expResult, result);
     }
 
     @Test
